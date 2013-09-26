@@ -11,14 +11,15 @@
 <script type="text/javascript" src="jquery-group/dist/jquery.group.min.js"></script>
 <link type="text/css" rel="stylesheet" href="jquery-group/dist/jquery.group.min.css" />
 <style>
-body { padding: 1%; }
+body { padding: 1%; background-color: #EEE; padding: 0; }
 pre { background-color: #EEE; max-height: 500px; overflow-y: scroll; }
 #data { float: right; width: 28%; margin-left: 2%; }
 #components { float: left; width: 68%; margin-right: 2%; }
 #view { width: 300px; overflow: hidden; }
 #sc2demo { width: 250px; overflow: hidden; }
-script.demo { display: block; white-space: pre; font-family: monospace; background-color: #EEE; padding: 1em; }
+script.demo { display: block; white-space: pre; font-family: monospace; background-color: #EEE; padding: 1em; margin: 1em 0; }
 h2 { clear: both; }
+article#main { max-width: 780px; background-color: #FFF; padding: 20px; box-sizing: border-box; }
 </style>
 <script type='text/javascript'>
 var groupData = [
@@ -230,13 +231,30 @@ var testData = participants.map(function(it, i) {
 </script>
 </head>
 <body>
+<article id="main">
 <h1>jQuery Group - Round-robin tournament groups</h1>
-Get latest code from project <a href="https://github.com/teijo/jquery-group/tree/master/dist">Github repository</a>. In addition, you'll need the following libraries:
+
+<p>jQuery Group is a UI component for displaying and editing round-robin
+  tournaments. It's sister project to <a href="http://aropupu.fi/bracket/">jQuery
+  Bracket</a> which does the same for single and double elimination
+  brackets..</p>
+<p>The project is not yet really in production shape. If you wish to see how the development progresses, please subscribe (star) to the repository at the <a href="https://github.com/teijo/jquery-group/tree/master/dist">project's GitHub page</a>.</p>
+<p>To use the project, you'll also need the following libraries:</p>
 <ul>
 <li><a href="http://lodash.com/">LoDash</a>, <a href="https://github.com/raimohanska/bacon.js">bacon.js</a>, <a href="http://jquery.com/">jQuery</a> and <a href="http://handlebarsjs.com/">handlebars</a></li>
 </ul>
-<h2>Empty</h2>
+<h2>Empty editor</h2>
+
+<p>Create at least two teams by entering a team name and clicking &quot;Add&quot;.
+  This will create a match between each team (e.g. teams a, b, c get matches
+  a-b, a-c, b-c). You can then drag the match(es) to specific rounds and
+  input scores for each match. Number of rounds is determined by the number of
+  participating teams
+  and their purpose is to allow arrangement of matches so that no two teams
+  are playing in same time slot (round).</p>
+
 <div id="empty"></div>
+<p>Setting up an empty editor is simple.</p>
 <script class="demo" type="text/javascript"
     >$('#empty').group({ save: function() {} })
 </script>
@@ -246,22 +264,31 @@ Get latest code from project <a href="https://github.com/teijo/jquery-group/tree
   <pre id="state"></pre>
 </div>
 <div id="components">
-<h2>Editor with random data</h2>
-<p>Edit group information. Add and rename teams from standings view. Drag and drop matches between rounds. Edit scores from matches.</p>
+<h2>Editor with pre-filled data</h2>
+
+<p>Below is a group with randomly generated team names and match results.
+  You can try to edit any information: edit team names, change results, add
+  teams and move matches by drag-and-drop between rounds.</p>
+<p>When modifying the group, you can see the new state on right, and the result
+  of rendering a read-only group below.</p>
 <div id="editor"></div>
-<h2>View to the editor</h2>
-<p>Modify the results in the editor above to see changes in this view.</p>
-<div id="view"></div>
-<script class="demo" type="text/javascript"
->// This is actually called by the next example
+<p>When any change is done in the edit mode, the complete state (to be
+  passed at init) is given to a callback. The callback can then store the
+  object as JSON for example to a database.</p>
+<script class="demo" type="text/javascript">// This is triggered by changes in above editor
 function changeCallback(state) {
+  // Show the state JSON on right
   $('pre').text(JSON.stringify(state, undefined, 2))
 
-  // Update read-only version of the component
+  // Reconstruct the read-only view below on each update
   $('#view').empty().group({ init: state })
 }
 </script>
+<p>Pass your callback at initialization.</p>
 <script class="demo" type="text/javascript">$('#editor').group({ init: testData, save: changeCallback })</script>
+<h2>Rendering a read-only version of the group</h2>
+<p>Modify the results in the editor above to see changes in this view.</p>
+<div id="view"></div>
 </div>
 
 <h2>Starcraft 2 tournament demo</h2>
@@ -270,5 +297,6 @@ function changeCallback(state) {
 <script class="demo" type='text/javascript'>
 $(function() { $('#sc2demo').group({ init: groupData }) })
 </script>
+</article>
 </body>
 </html>
