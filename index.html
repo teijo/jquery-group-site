@@ -285,7 +285,7 @@ function changeCallback(state) {
 }
 </script>
 <p>Pass your callback at initialization.</p>
-<script class="demo" type="text/javascript">$('#editor').group({ init: testData, save: changeCallback })</script>
+<script class="demo" type="text/javascript">$('#editor').group({ init: {matches: testData}, save: changeCallback })</script>
 <h2>Rendering a read-only version of the group</h2>
 <p>Modify the results in the editor above to see changes in this view.</p>
 <div id="view"></div>
@@ -295,7 +295,7 @@ function changeCallback(state) {
 <p>IEM Season VII - World Championship group B, data from <a href="http://wiki.teamliquid.net/starcraft2/IEM_Season_VII_-_World_Championship">Liquipedia</a></p>
 <div id="sc2demo"></div>
 <script class="demo" type='text/javascript'>
-$(function() { $('#sc2demo').group({ init: groupData }) })
+$(function() { $('#sc2demo').group({ init: {matches: groupData} }) })
 </script>
 </article>
 </body>
