@@ -15,11 +15,13 @@ body { padding: 1%; background-color: #EEE; padding: 0; }
 pre { background-color: #EEE; max-height: 500px; overflow-y: scroll; }
 #data { float: right; width: 28%; margin-left: 2%; }
 #components { float: left; width: 68%; margin-right: 2%; }
-#view { width: 300px; overflow: hidden; }
+#view { overflow: hidden; }
 #sc2demo { width: 250px; overflow: hidden; }
-script.demo { display: block; white-space: pre; font-family: monospace; background-color: #EEE; padding: 1em; margin: 1em 0; }
+script.demo { display: block; white-space: pre; font-family: monospace; background-color: #EEE; padding: 1em; margin: 1em 0; clear: both; }
 h2 { clear: both; }
 article#main { max-width: 780px; background-color: #FFF; padding: 20px; box-sizing: border-box; }
+#state { max-height: 300px; }
+p { clear: both; }
 </style>
 <script type='text/javascript'>
 var participants = [{id: 74, name: "Red Tornadoes"}, {id: 54, name: "Venomous Planets"}, {id: 12, name: "Crimson Legends"}, {id: 65, name: "Deadly Slammers"}]
@@ -67,7 +69,18 @@ var testData = {
 <ul>
 <li><a href="http://lodash.com/">LoDash</a>, <a href="https://github.com/raimohanska/bacon.js">bacon.js</a>, <a href="http://jquery.com/">jQuery</a> and <a href="http://handlebarsjs.com/">handlebars</a></li>
 </ul>
-<h2>Empty editor</h2>
+
+<div id="data">
+  <h2>Editor state</h2>
+  <p>State in JSON for storing.</p>
+  <pre id="state">&lt;- do some changes</pre>
+  <p>Use the editor on left to see what the <code>save</code> callback receives.</p>
+</div>
+<div id="components">
+  <h2>Empty editor</h2>
+  <p>Try toying around with an empty editor. Details below.</p>
+  <div id="empty"></div>
+</div>
 
 <p>Create at least two teams by entering a team name and clicking &quot;Add&quot;.
   This will create a match between each team (e.g. teams a, b, c get matches
@@ -77,43 +90,41 @@ var testData = {
   and their purpose is to allow arrangement of matches so that no two teams
   are playing in same time slot (round).</p>
 
-<div id="empty"></div>
-<p>Setting up an empty editor is simple.</p>
+<p>Setting up the empty editor above is easy.</p>
 <script class="demo" type="text/javascript"
-    >$('#empty').group({ save: function() {} })
+    >$('div#empty').group({
+  save: function(state) {
+    // Write your storage code here, now just display JSON above
+    $('pre').text(JSON.stringify(state, undefined, 2))
+  }
+})
 </script>
-<div id="data">
-  <h2>Editor state</h2>
-  <p>JSON state of the editor that can be passed to initialize a new plugin.</p>
-  <pre id="state"></pre>
+<div style="float: left; width: 45%;">
+<h2>Admin view</h2>
+  <p>Edit the group below.</p>
+  <div id="editor"></div>
 </div>
-<div id="components">
-<h2>Editor with pre-filled data</h2>
-
-<p>Below is a group with randomly generated team names and match results.
+<div style="float: right; width: 45%;">
+  <h2>Visitor view</h2>
+  <p>See changes done on left.</p>
+  <div id="view"></div>
+</div>
+<p>This is a group with randomly generated team names and match results.
   You can try to edit any information: edit team names, change results, add
   teams and move matches by drag-and-drop between rounds.</p>
-<p>When modifying the group, you can see the new state on right, and the result
-  of rendering a read-only group below.</p>
-<div id="editor"></div>
-<p>When any change is done in the edit mode, the complete state (to be
-  passed at init) is given to a callback. The callback can then store the
-  object as JSON for example to a database.</p>
-<script class="demo" type="text/javascript">// This is triggered by changes in above editor
-function changeCallback(state) {
-  // Show the state JSON on right
-  $('pre').text(JSON.stringify(state, undefined, 2))
-
-  // Reconstruct the read-only view below on each update
-  $('#view').empty().group({ init: state })
-}
+<p>When modifying the group, the registered save callback re-renders a
+  &quot;read-only&quot; version of the group.</p>
+<script class="demo" type="text/javascript"
+    >$('#editor').group({
+  init: testData,
+  save: function(state) {
+    // Reconstruct read-only version by initializing it with received state
+    $('#view').empty().group({
+      init: state
+    })
+  }
+})
 </script>
-<p>Pass your callback at initialization.</p>
-<script class="demo" type="text/javascript">$('#editor').group({ init: testData, save: changeCallback })</script>
-<h2>Rendering a read-only version of the group</h2>
-<p>Modify the results in the editor above to see changes in this view.</p>
-<div id="view"></div>
-</div>
 
 <h2>Starcraft 2 tournament demo</h2>
 <p>IEM Season VII - World Championship group B, data from <a href="http://wiki.teamliquid.net/starcraft2/IEM_Season_VII_-_World_Championship">Liquipedia</a></p>
