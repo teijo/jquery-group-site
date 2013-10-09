@@ -22,197 +22,218 @@ h2 { clear: both; }
 article#main { max-width: 780px; background-color: #FFF; padding: 20px; box-sizing: border-box; }
 </style>
 <script type='text/javascript'>
-var groupData = [
-  {
-    "id": 0,
-    "round": 1,
-    "a": {
-      "name": "YoDa[sk,t]",
-      "score": 1
+var groupData = {
+  teams: [
+    {id: 10,
+     name: "YoDa[sk,t]" },
+    {id: 11,
+     name: "First[sk,p]" },
+    {id: 12,
+      name: "MC[sk,p]" },
+    {id: 13,
+      name: "Ret[fr,z]" },
+    {id: 14,
+      name: "Kas[uk,t]" },
+    {id: 15,
+      name: "XIorD[de,z]" }
+  ],
+  matches: [
+    {
+      "id": 0,
+      "round": 1,
+      "a": {
+        "team": 0,
+        "score": 1
+      },
+      "b": {
+        "team": 1,
+        "score": 2
+      }
+    }, {
+      "id": 1,
+      "round": 1,
+      "a": {
+        "team": 0,
+        "score": 2
+      },
+      "b": {
+        "team": 2,
+        "score": 1
+      }
     },
-    "b": {
-      "name": "First[sk,p]",
-      "score": 2
-    }
-  },
-  {
-    "id": 1,
-    "round": 1,
-    "a": {
-      "name": "YoDa[sk,t]",
-      "score": 2
+    {
+      "id": 2,
+      "round": 1,
+      "a": {
+        "team": 1,
+        "score": 2
+      },
+      "b": {
+        "team": 2,
+        "score": 1
+      }
     },
-    "b": {
-      "name": "MC[sk,p]",
-      "score": 1
-    }
-  },
-  {
-    "id": 2,
-    "round": 1,
-    "a": {
-      "name": "First[sk,p]",
-      "score": 2
+    {
+      "id": 3,
+      "round": 2,
+      "a": {
+        "team": 0,
+        "score": 2
+      },
+      "b": {
+        "team": 3,
+        "score": 0
+      }
     },
-    "b": {
-      "name": "MC[sk,p]",
-      "score": 1
-    }
-  },
-  {
-    "id": 3,
-    "round": 2,
-    "a": {
-      "name": "YoDa[sk,t]",
-      "score": 2
+    {
+      "id": 4,
+      "round": 2,
+      "a": {
+        "team": 1,
+        "score": 0
+      },
+      "b": {
+        "team": 3,
+        "score": 2
+      }
     },
-    "b": {
-      "name": "Ret[fr,z]",
-      "score": 0
-    }
-  },
-  {
-    "id": 4,
-    "round": 2,
-    "a": {
-      "name": "First[sk,p]",
-      "score": 0
+    {
+      "id": 5,
+      "round": 2,
+      "a": {
+        "team": 2,
+        "score": 0
+      },
+      "b": {
+        "team": 3,
+        "score": 2
+      }
     },
-    "b": {
-      "name": "Ret[fr,z]",
-      "score": 2
-    }
-  },
-  {
-    "id": 5,
-    "round": 2,
-    "a": {
-      "name": "MC[sk,p]",
-      "score": 0
+    {
+      "id": 6,
+      "round": 3,
+      "a": {
+        "team": 0,
+        "score": 2
+      },
+      "b": {
+        "team": 4,
+        "score": 1
+      }
     },
-    "b": {
-      "name": "Ret[fr,z]",
-      "score": 2
-    }
-  },
-  {
-    "id": 6,
-    "round": 3,
-    "a": {
-      "name": "YoDa[sk,t]",
-      "score": 2
+    {
+      "id": 7,
+      "round": 3,
+      "a": {
+        "team": 1,
+        "score": 2
+      },
+      "b": {
+        "team": 4,
+        "score": 0
+      }
     },
-    "b": {
-      "name": "Kas[uk,t]",
-      "score": 1
-    }
-  },
-  {
-    "id": 7,
-    "round": 3,
-    "a": {
-      "name": "First[sk,p]",
-      "score": 2
+    {
+      "id": 8,
+      "round": 3,
+      "a": {
+        "team": 2,
+        "score": 2
+      },
+      "b": {
+        "team": 4,
+        "score": 0
+      }
     },
-    "b": {
-      "name": "Kas[uk,t]",
-      "score": 0
-    }
-  },
-  {
-    "id": 8,
-    "round": 3,
-    "a": {
-      "name": "MC[sk,p]",
-      "score": 2
+    {
+      "id": 9,
+      "round": 4,
+      "a": {
+        "team": 3,
+        "score": 2
+      },
+      "b": {
+        "team": 4,
+        "score": 1
+      }
     },
-    "b": {
-      "name": "Kas[uk,t]",
-      "score": 0
-    }
-  },
-  {
-    "id": 9,
-    "round": 4,
-    "a": {
-      "name": "Ret[fr,z]",
-      "score": 2
+    {
+      "id": 10,
+      "round": 4,
+      "a": {
+        "team": 0,
+        "score": 2
+      },
+      "b": {
+        "team": 5,
+        "score": 0
+      }
     },
-    "b": {
-      "name": "Kas[uk,t]",
-      "score": 1
-    }
-  },
-  {
-    "id": 10,
-    "round": 4,
-    "a": {
-      "name": "YoDa[sk,t]",
-      "score": 2
+    {
+      "id": 11,
+      "round": 4,
+      "a": {
+        "team": 1,
+        "score": 2
+      },
+      "b": {
+        "team": 5,
+        "score": 1
+      }
     },
-    "b": {
-      "name": "XIorD[de,z]",
-      "score": 0
-    }
-  },
-  {
-    "id": 11,
-    "round": 4,
-    "a": {
-      "name": "First[sk,p]",
-      "score": 2
+    {
+      "id": 12,
+      "round": 5,
+      "a": {
+        "team": 2,
+        "score": 2
+      },
+      "b": {
+        "team": 5,
+        "score": 1
+      }
     },
-    "b": {
-      "name": "XIorD[de,z]",
-      "score": 1
-    }
-  },
-  {
-    "id": 12,
-    "round": 5,
-    "a": {
-      "name": "MC[sk,p]",
-      "score": 2
+    {
+      "id": 13,
+      "round": 5,
+      "a": {
+        "team": 3,
+        "score": 2
+      },
+      "b": {
+        "team": 5,
+        "score": 0
+      }
     },
-    "b": {
-      "name": "XIorD[de,z]",
-      "score": 1
+    {
+      "id": 14,
+      "round": 5,
+      "a": {
+        "team": 4,
+        "score": 2
+      },
+      "b": {
+        "team": 5,
+        "score": 1
+      }
     }
-  },
-  {
-    "id": 13,
-    "round": 5,
-    "a": {
-      "name": "Ret[fr,z]",
-      "score": 2
-    },
-    "b": {
-      "name": "XIorD[de,z]",
-      "score": 0
-    }
-  },
-  {
-    "id": 14,
-    "round": 5,
-    "a": {
-      "name": "Kas[uk,t]",
-      "score": 2
-    },
-    "b": {
-      "name": "XIorD[de,z]",
-      "score": 1
-    }
-  }
-]
-var participants = _(["Red Tornadoes", "Venomous Planets", "Crimson Legends", "Deadly Slammers"])
-var roundCount = participants.size() - 1 + (participants.size() % 2)
-var testData = participants.map(function(it, i) {
-  return participants.filter(function(_, j) { return j < i }).map(function(it2) {
+  ]
+}
+var participants = [{id: 74, name: "Red Tornadoes"}, {id: 54, name: "Venomous Planets"}, {id: 12, name: "Crimson Legends"}, {id: 65, name: "Deadly Slammers"}]
+var p = _(participants)
+var roundCount = p.size() - 1 + (p.size() % 2)
+var matches = p.map(function(_, i) {
+  return p.filter(function(_, j) { return j < i }).map(function(_, i2) {
     return { round: ~~(Math.random()*10)%(roundCount + 1),
-            a: { name: it,  score: ~~(Math.random()*10)%10 },
-            b: { name: it2, score: ~~(Math.random()*10)%10 } }
+            a: { team: i,  score: ~~(Math.random()*10)%10 },
+            b: { team: i2, score: ~~(Math.random()*10)%10 } }
   }).value()
 }).flatten(true).value()
+
+var testData = {
+  teams: participants,
+  matches: matches
+}
 </script>
 <title>jQuery Group</title>
 <script type='text/javascript'>
@@ -285,7 +306,7 @@ function changeCallback(state) {
 }
 </script>
 <p>Pass your callback at initialization.</p>
-<script class="demo" type="text/javascript">$('#editor').group({ init: {matches: testData}, save: changeCallback })</script>
+<script class="demo" type="text/javascript">$('#editor').group({ init: testData, save: changeCallback })</script>
 <h2>Rendering a read-only version of the group</h2>
 <p>Modify the results in the editor above to see changes in this view.</p>
 <div id="view"></div>
@@ -295,7 +316,7 @@ function changeCallback(state) {
 <p>IEM Season VII - World Championship group B, data from <a href="http://wiki.teamliquid.net/starcraft2/IEM_Season_VII_-_World_Championship">Liquipedia</a></p>
 <div id="sc2demo"></div>
 <script class="demo" type='text/javascript'>
-$(function() { $('#sc2demo').group({ init: {matches: groupData} }) })
+$(function() { $('#sc2demo').group({ init: groupData }) })
 </script>
 </article>
 </body>
